@@ -1,0 +1,19 @@
+{
+  "name": "corral",
+  "version": "0.0.0",
+  "description": "Vehicle impound",
+  "main": "app.js",
+  "authors": [
+    "radvieira@gmail.com"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/radvieira/corral",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
