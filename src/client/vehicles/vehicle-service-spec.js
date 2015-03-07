@@ -6,7 +6,8 @@ describe('Vehicles service spec', function() {
   'use strict';
 
   var Vehicles,
-      $rootScope;
+      $httpBackend,
+      url = '/api/vehicles';
 
   beforeEach(function() {
 
@@ -14,20 +15,58 @@ describe('Vehicles service spec', function() {
 
     inject(function($injector) {
         Vehicles = $injector.get('Vehicles');
-        $rootScope = $injector.get('$rootScope');
+        $httpBackend = $injector.get('$httpBackend');
     });
 
   });
 
-  it('should call success handler with data', function() {
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
 
-    var success = jasmine.createSpy('success', function() {});
 
-    Vehicles.list().then(success);
+  describe('list', function() {
 
-    $rootScope.$digest();
+    it('should get from path', function() {
 
-    expect(success).toHaveBeenCalledWith([]);
+      $httpBackend.whenGET(url).respond([]);
+
+      $httpBackend.expectGET(url);
+
+      Vehicles.list();
+
+      $httpBackend.flush();
+
+    });
+
+    it('should call success handler with data', function() {
+
+      var success = jasmine.createSpy('success', function() {});
+
+      $httpBackend.whenGET(url).respond([]);
+
+      Vehicles.list().then(success);
+
+      $httpBackend.flush();
+
+      expect(success).toHaveBeenCalledWith([]);
+
+    });
+
+    it('should call error handler when request fails', function() {
+
+      var failure = jasmine.createSpy('failure', function() {});
+
+      $httpBackend.whenGET(url).respond(500);
+
+      Vehicles.list().then(undefined /*not important here */, failure);
+
+      $httpBackend.flush();
+
+      expect(failure).toHaveBeenCalled();
+
+    });
 
   });
 
