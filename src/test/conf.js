@@ -4,5 +4,5 @@ child.exec('grunt connect:server');
 
 exports.config = {
   specs: ['**/*-e2e-spec.js'],
-  seleniumServerJar: './selenium-server-standalone-2.43.1.jar'
+  seleniumServerJar: './lib/selenium-server-standalone-2.43.1.jar'
 };
