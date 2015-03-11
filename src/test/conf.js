@@ -1,6 +1,6 @@
 
 var child = require('child_process');
-child.exec('grunt connect:server:keepalive');
+child.exec('grunt connect:server');
 
 exports.config = {
   specs: ['**/*-e2e-spec.js'],
