@@ -18,7 +18,8 @@ module.exports = function(config) {
       'src/client/bower_components/angularjs/angular.js',
       'src/client/bower_components/angular-mocks/angular-mocks.js',
       'src/client/vehicles/**/*-module.js',
-      'src/client/vehicles/**/*.js'
+      'src/client/vehicles/**/*.js',
+      'src/client/**/*.tpl.html'
     ],
 
 
@@ -31,6 +32,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/*.tpl.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      moduleName: 'corral.vehicles',
+      stripPrefix: 'src/client/'
     },
 
 
