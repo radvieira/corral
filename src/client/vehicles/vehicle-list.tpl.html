@@ -1,6 +1,9 @@
 <div>
     <p data-ng-if="isError">Could not get vehicles</p>
     <ul data-ng-if="!isError">
-        <li data-ng-repeat="vehicle in vehicles">{{vehicle}}</li>
+        <li data-ng-repeat="vehicle in vehicles">
+            <div class="vin">{{vehicle.vin}}</div>
+            <div class="plate-number">{{vehicle.plateNumber}}</div>
+        </li>
     </ul>
 </div>

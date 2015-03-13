@@ -13,7 +13,10 @@ describe('vehicle list', function() {
 
   beforeEach(function() {
 
-    vehicleData = ['honda', 'toyota'];
+    vehicleData = [
+      { make: 'Honda', vin: '123', plateNumber: 'abc-123' },
+      { make: 'Toyota', vin: '321', plateNumber: '123-abc' }
+    ];
 
     module('corral.vehicles');
 
@@ -93,5 +96,44 @@ describe('vehicle list', function() {
     expect(directive.find('p').length).toEqual(0);
 
   });
+
+  describe('summary', function() {
+
+    it('should render vin number', function() {
+
+      var directive,
+          deferred = $q.defer();
+
+      spyOn(Vehicles, 'list').and.returnValue(deferred.promise);
+
+      deferred.resolve(vehicleData);
+
+      directive = $compile('<vehicle-list></vehicle-list>')($scope);
+
+      $scope.$digest();
+
+      expect(directive[0].getElementsByClassName('vin')[0].innerHTML).toEqual(vehicleData[0].vin);
+
+    });
+
+    it('should render plate number number', function() {
+
+      var directive,
+          deferred = $q.defer();
+
+      spyOn(Vehicles, 'list').and.returnValue(deferred.promise);
+
+      deferred.resolve(vehicleData);
+
+      directive = $compile('<vehicle-list></vehicle-list>')($scope);
+
+      $scope.$digest();
+
+      expect(directive[0].getElementsByClassName('plate-number')[0].innerHTML).toEqual(vehicleData[0].plateNumber);
+
+    });
+
+  });
+
 
 });
