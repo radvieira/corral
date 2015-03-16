@@ -116,7 +116,7 @@ describe('vehicle list', function() {
 
     });
 
-    it('should render plate number number', function() {
+    it('should render plate number', function() {
 
       var directive,
           deferred = $q.defer();
@@ -130,6 +130,23 @@ describe('vehicle list', function() {
       $scope.$digest();
 
       expect(directive[0].getElementsByClassName('plate-number')[0].innerHTML).toEqual(vehicleData[0].plateNumber);
+
+    });
+
+    it('should render model', function() {
+
+      var directive,
+        deferred = $q.defer();
+
+      spyOn(Vehicles, 'list').and.returnValue(deferred.promise);
+
+      deferred.resolve(vehicleData);
+
+      directive = $compile('<vehicle-list></vehicle-list>')($scope);
+
+      $scope.$digest();
+
+      expect(directive[0].getElementsByClassName('make')[0].innerHTML).toEqual(vehicleData[0].make);
 
     });
 
