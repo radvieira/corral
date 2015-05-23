@@ -1,4 +1,4 @@
-# A Playground for Experimenting with things Angular
+# A playground for experimenting with things Angular
 
 The example:
 
@@ -17,11 +17,10 @@ Install Selenium
 
 `./node_modules/protractor/bin/webdriver-manager update`
 
+## Run the tests
+
+`npm test`
 
 ## Run the App
 
 `grunt connect:server:keepalive`
-
-## Run the tests
-
-`npm test`
