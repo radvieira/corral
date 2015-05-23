@@ -15,5 +15,11 @@ process.on('exit', function() {
 
 exports.config = {
   specs: ['**/*-e2e-spec.js'],
-  seleniumServerJar: './lib/selenium-server-standalone-2.43.1.jar'
+  seleniumServerJar: './lib/selenium-server-standalone-2.43.1.jar',
+  plugins: [{
+    chromeA11YDevTools: {
+      treatWarningsAsFailures: true
+    },
+    path: '../../node_modules/protractor/plugins/accessibility'
+  }]
 };
